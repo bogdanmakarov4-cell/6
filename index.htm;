@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>GreenTrack — эко-помощник для осознанной жизни</title>
+    <!-- Google Fonts + Font Awesome + AOS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fef5;
+            color: #1e3a2b;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #2d6a4f;
+            color: white;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+        }
+        .btn:hover {
+            background-color: #1b4d3e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2d6a4f;
+            color: #2d6a4f;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background-color: #2d6a4f;
+            color: white;
+        }
+        .hero .btn-outline {
+            border-color: white;
+            color: white;
+            background: rgba(255,255,255,0.15);
+        }
+        .hero .btn-outline:hover {
+            background: white;
+            color: #2d6a4f;
+            border-color: white;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(20, 55, 40, 0.9), rgba(45, 106, 79, 0.85)), url('https://placehold.co/1920x1080/408067/white?text=Eco+Friendly+Lifestyle') center/cover no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            max-width: 700px;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.92;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Секции */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            color: #1b4d3e;
+        }
+        .section-sub {
+            text-align: center;
+            max-width: 700px;
+            margin: -30px auto 50px;
+            color: #3b5e4b;
+            font-size: 1.1rem;
+        }
+
+        /* Карточки функционала */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 32px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid #cce3d9;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px -10px rgba(45, 106, 79, 0.2);
+            border-color: #9cbfa8;
+        }
+        .feature-icon {
+            font-size: 2.6rem;
+            color: #2d6a4f;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #1b4d3e;
+        }
+
+        /* Путь от А к Б */
+        .journey {
+            background: #eafaf1;
+        }
+        .journey-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .journey-item {
+            flex: 1;
+            min-width: 220px;
+            background: white;
+            padding: 28px;
+            border-radius: 28px;
+            text-align: center;
+        }
+        .journey-item i {
+            font-size: 2rem;
+            color: #2d6a4f;
+            margin-bottom: 15px;
+        }
+
+        /* Преимущества */
+        .advantages {
+            background: #ffffff;
+        }
+        .adv-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .adv-item {
+            flex: 1;
+            min-width: 240px;
+            background: #f0fcf4;
+            padding: 28px;
+            border-radius: 28px;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .adv-item:hover {
+            background: #e0f4e6;
+        }
+
+        /* Отзывы */
+        .reviews {
+            background: #fefdf7;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .review {
+            background: white;
+            padding: 28px;
+            border-radius: 32px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .review:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(45, 106, 79, 0.08);
+        }
+        .review p {
+            font-style: italic;
+            margin-bottom: 16px;
+            color: #1e3a2b;
+        }
+        .review-author {
+            font-weight: 700;
+            color: #2d6a4f;
+        }
+        .stars {
+            color: #f4b942;
+            margin-bottom: 12px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 24px;
+            margin-bottom: 16px;
+            padding: 0 24px;
+            border: 1px solid #d9eadf;
+            cursor: pointer;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1b4d3e;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            color: #3b5e4b;
+            padding-right: 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 320px;
+            padding-bottom: 20px;
+        }
+
+        /* Цена */
+        .pricing {
+            background: linear-gradient(120deg, #e0f2e9 0%, #ffffff 100%);
+            text-align: center;
+        }
+        .price-card {
+            max-width: 520px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 48px;
+            padding: 48px 32px;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+        }
+        .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #2d6a4f;
+        }
+        .price small {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Футер + стрелка */
+        footer {
+            background: #1b4d3e;
+            color: #cce3d9;
+            padding: 48px 0 24px;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .footer-links a {
+            color: #d9eadf;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #a6c9b7;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2d6a4f;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            background: #1b4d3e;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 245, 0.96);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 16px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #1b4d3e;
+        }
+        .logo i {
+            color: #2d6a4f;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #2b5b45;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-menu a:hover {
+            color: #2d6a4f;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1b4d3e;
+        }
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #fffff5;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 30px 0;
+                gap: 24px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 10px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-leaf"></i> GreenTrack</div>
+        <div class="menu-icon" id="menuIcon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#features">Функции</a></li>
+            <li><a href="#advantages">Преимущества</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#pricing">Цена</a></li>
+            <li><a href="app.html" target="_blank">Приложение</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Маленькие шаги <br>к большой планете</h1>
+            <p>GreenTrack — персональный эко-навигатор. Сокращай мусор, экономь ресурсы и живи осознанно, не жертвуя комфортом.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn">Узнать больше <i class="fas fa-arrow-right"></i></a>
+                <a href="app.html" class="btn btn-outline" target="_blank">Открыть приложение <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Краткое описание -->
+<section id="about">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">Твой эко-план на каждый день</div>
+        <div class="section-sub" data-aos="fade-up">GreenTrack анализирует твои привычки, жильё, бюджет и здоровье, чтобы предложить простые и эффективные шаги к осознанному потреблению.</div>
+        <div data-aos="fade-up" style="text-align: center;">
+            <i class="fas fa-globe-europe" style="font-size: 3rem; color:#2d6a4f;"></i>
+            <p style="max-width:600px; margin:20px auto;">Присоединяйся к сообществу, где каждый день мы вместе уменьшаем углеродный след — и считаем реальную экономию.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Путь от А к Б -->
+<section class="journey">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">От безответственного потребления к эко-привычкам</div>
+        <div class="journey-grid">
+            <div class="journey-item" data-aos="zoom-in">
+                <i class="fas fa-trash-alt"></i>
+                <h3>Горы мусора</h3>
+                <p>→ Осознанный отказ от одноразового пластика</p>
+            </div>
+            <div class="journey-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-charging-station"></i>
+                <h3>Перерасход энергии</h3>
+                <p>→ Энергоэффективность и снижение счетов</p>
+            </div>
+            <div class="journey-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-water"></i>
+                <h3>Напрасная трата воды</h3>
+                <p>→ Бережное отношение и экономия до 30%</p>
+            </div>
+            <div class="journey-item" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-store"></i>
+                <h3>Быстрая мода / химия</h3>
+                <p>→ Этичные бренды и безопасные средства</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Карточки функционала -->
+<section id="features">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">Что умеет GreenTrack</div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="flip-left">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>Персональный эко-план</h3>
+                <p>Челленджи на каждый день: от сортировки отходов до замены бытовой химии — шаг за шагом.</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Калькулятор следа</h3>
+                <p>Узнай, сколько CO₂ и воды ты экономишь — в цифрах и в сравнении с деревьями.</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>Карта экологичности</h3>
+                <p>Пункты приёма вторсырья, эко-магазины, фудшеринг — всё рядом с домом.</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Адаптация под здоровье</h3>
+                <p>Аллергия на химию? Проблемы с суставами? Подберём щадящие альтернативы.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Преимущества и отличия -->
+<section id="advantages" class="advantages">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">Почему GreenTrack лучше других эко-приложений</div>
+        <div class="adv-list">
+            <div class="adv-item" data-aos="fade-right">
+                <i class="fas fa-tachometer-alt fa-2x" style="color:#2d6a4f;"></i>
+                <h3>Без фанатизма</h3>
+                <p>Мы не требуем стать идеальным веганом с ноль-отходов. Начинайте с малого, не выгорая.</p>
+            </div>
+            <div class="adv-item" data-aos="fade-right" data-aos-delay="100">
+                <i class="fas fa-euro-sign fa-2x" style="color:#2d6a4f;"></i>
+                <h3>Реальная экономия</h3>
+                <p>Вы не только помогаете планете, но и сокращаете счета за воду/свет. Средняя экономия — 2500 ₽/мес.</p>
+            </div>
+            <div class="adv-item" data-aos="fade-right" data-aos-delay="200">
+                <i class="fas fa-wheelchair fa-2x" style="color:#2d6a4f;"></i>
+                <h3>Инклюзивность</h3>
+                <p>Другие приложения игнорируют ограничения по здоровью. GreenTrack подбирает эко-привычки, которые вам реально выполнить.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section id="reviews" class="reviews">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">Что говорят наши пользователи</div>
+        <div class="reviews-grid">
+            <div class="review" data-aos="fade-up">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>«GreenTrack помог мне наладить раздельный сбор там, где нет контейнеров — нашёл ближайший пункт приёма. Теперь мусора в ведре в 3 раза меньше!»</p>
+                <div class="review-author">— Анна, 28 лет</div>
+            </div>
+            <div class="review" data-aos="fade-up" data-aos-delay="100">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>«У меня аллергия на ароматизаторы в стиральных порошках. Приложение подобрало безопасные эко-средства — и вещи чистые, и чихать перестала.»</p>
+                <div class="review-author">— Михаил, 34 года</div>
+            </div>
+            <div class="review" data-aos="fade-up" data-aos-delay="200">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <p>«Семейный режим — находка! Муж и дети соревнуются, кто больше сэкономит воды. А я вижу реальную сумму в квитанции. Спасибо!»</p>
+                <div class="review-author">— Елена, 41 год</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">Часто задаваемые вопросы</div>
+        <div class="faq-list" data-aos="fade-up">
+            <div class="faq-item">
+                <div class="faq-question">С чего начать, если я никогда не сортировал мусор? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">GreenTrack начинает с лёгких заданий: например, «откажись от пластикового пакета на кассе» или «найди на карте пункт приёма батареек». Постепенно сложность растёт, но вы всегда можете откатить уровень.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Как приложение учитывает ограничения по здоровью? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Вы укажете аллергии, хронические болезни или физические ограничения. Например, если вам нельзя долго ходить пешком — приложение не будет предлагать походы в отдалённые пункты сбора, а даст советы по сортировке дома.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Это бесплатно? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Базовая версия (3 активных челленджа, карта пунктов приёма) — бесплатно. Премиум (неограниченные челленджи, аналитика, семейный режим, интеграция со счётчиками) — 199 ₽/мес или 1490 ₽/год.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Можно ли подключить смарт-счётчики воды/света? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Да, поддерживаются популярные модели (например, умные розетки и счётчики с API). Автоматический импорт данных покажет точную экономию.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Блок с ценой -->
+<section id="pricing" class="pricing">
+    <div class="container">
+        <div class="price-card" data-aos="flip-up">
+            <h2>Премиум-доступ</h2>
+            <div class="price">199 ₽ <small>/ месяц</small></div>
+            <p style="margin: 20px 0;">Безлимитные челленджи, семейный режим (до 6 участников), расширенная аналитика CO₂, интеграция со счётчиками. Первые 14 дней бесплатно.</p>
+            <a href="#" class="btn" id="payButton">Попробовать бесплатно <i class="fas fa-seedling"></i></a>
+            <p style="font-size:0.8rem; margin-top:20px;">Отмена в любой момент, без скрытых платежей</p>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#">О компании</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Поддержка</a>
+            <a href="app.html" target="_blank">Приложение</a>
+        </div>
+        <p>&copy; 2026 GreenTrack — осознанное потребление для каждого.</p>
+        <p style="margin-top: 10px;"><i class="fas fa-heart" style="color:#a6c9b7;"></i> Вместе заботимся о планете</p>
+    </div>
+</footer>
+
+<!-- Стрелка вверх -->
+<div class="scroll-top" id="scrollTopBtn">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    // Бургер-меню
+    const menuIcon = document.getElementById('menuIcon');
+    const navMenu = document.getElementById('navMenu');
+    menuIcon.addEventListener('click', () => navMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('active'));
+    });
+
+    // Плавный скролл для якорей
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            if (targetId === '') return;
+            const target = document.getElementById(targetId);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Стрелка вверх
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) scrollBtn.classList.add('show');
+        else scrollBtn.classList.remove('show');
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // FAQ аккордеон
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+    if (faqItems.length) faqItems[0].classList.add('active');
+
+    // Кнопка оплаты (заглушка)
+    const payBtn = document.getElementById('payButton');
+    payBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Демо-режим. Замените ссылку на реальную страницу оплаты.');
+    });
+</script>
+</body>
+</html>
